@@ -1,0 +1,316 @@
+/* Imports */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+
+/******************************************
+/* CSS
+/*******************************************/
+
+html {
+  /* font-size: calc(100% + 0.390625vw); */
+  font-size: 62.5%;
+  font-family:  sans-serif;
+}
+
+
+
+/* Box Model Hack */
+*{
+  box-sizing: border-box;
+  --primaryColor: #502e1c; 
+  --backgroundColor: #c88e8f; 
+  --cardColor: #ceb4b7;
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+
+
+/* spacial check box */
+.checkbox {
+  display: none;
+}
+
+.slider {
+  width: 60px;
+  height: 30px;
+  background-color: lightgray;
+  border-radius: 20px;
+  overflow: hidden;
+  display: inline-block;
+  align-items: center;
+  border: 4px solid transparent;
+  transition: .3s;
+  box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.25) inset;
+  cursor: pointer;
+}
+
+.slider::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  transform: translateX(-30px);
+  border-radius: 20px;
+  transition: .3s;
+  box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
+}
+
+
+.checkbox:checked ~ .slider::before {
+  transform: translateX(30px);
+  box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
+}
+
+.checkbox:checked ~ .slider {
+  background-color: var(--primaryColor);
+}
+
+.checkbox:active ~ .slider::before {
+  transform: translate(0);
+}
+
+/* special check box */
+
+body {
+  background: var(--backgroundColor);
+  color: var(--primaryColor);
+  font-size: 1.6rem;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 6rem;
+}
+
+body.drinkPage {
+  background: var(--cardColor);
+}
+
+/* header */
+header {
+  padding: 2rem 1.6rem;
+}
+
+
+header  h1 {
+  text-align: center;
+  font-family: "pacifico", 'Courier New', Courier, monospace;
+  font-size: 2.618rem;
+  margin: 0.5em 0;
+}
+
+
+header nav a{
+ font-size: 2.618rem;
+ color: var(--primarycolor);
+}
+
+header nav a:visited {
+  color: var(--primaryColor);
+}
+
+header nav h1 {
+  display: inline-block;
+}
+
+header h2 {
+  text-align: center;
+  font-size: 2.618rem;
+}
+
+
+/* end of header */
+
+section {
+  margin: 1rem 1.6rem;
+}
+
+
+/* form section */
+
+.formSection form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 100px;
+  justify-content: space-around;
+  align-content: space-between;
+}
+
+
+.formSection form label {
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+
+.formSection form label #searchBox {
+  height: 40px;
+  margin-left: 0.5rem;
+  padding-left: 10px;
+  background: #ebd5d6;
+  color: #502e1c;
+  border: none;
+  border-radius: 4px;
+}
+
+.formSection form label #searchBox:focus {
+  outline: none;
+  border: solid 2px var(--primaryColor);
+  transition: border 0.4s;
+  
+}
+
+.formSection form label .slider {
+  margin-left: 10px;
+}
+
+/* End of form section */
+
+/* start of main section content */
+
+#mainContent {
+  margin: 2em 1em;
+ 
+}
+
+#mainContent ul {
+  padding: 0;
+  text-align: center;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+  /* grid-gap: 20px; */
+  justify-content: space-around;
+}
+
+#mainContent ul li {
+  margin: 2rem 0;
+  padding: 1rem;
+  max-width: 15rem;
+  text-align: center;
+  border-radius: 10px;
+  background-color: var(--cardColor);
+  cursor: pointer;
+  transition: background 0.5s;
+  transition: transform;
+}
+
+
+#mainContent ul li:hover {
+  background-color: var(--primaryColor);
+  color: var(--cardColor);
+
+}
+
+#mainContent ul li img {
+  width: 100%;
+}
+
+
+
+#mainContent ul li h4 {
+  font-size: 1em;
+  margin: 10px auto;
+}
+
+/* end of main section content */
+/* Footer Start */
+
+footer {
+  position: absolute;
+  text-align: center;
+  min-height: 6rem;
+  width: 100%;
+  bottom: 0;
+  margin: auto 0;
+  padding: 1rem;
+  background: var(--primaryColor);
+}
+
+footer p {
+  color: var(--cardColor);
+}
+
+/* Footer End */
+
+
+/* drink page  */
+/* main section */
+
+section#main {
+  text-align: center;
+}
+
+section#main img {
+  max-width: 25rem;
+}
+
+section#main div {
+  margin: 3rem 0; 
+}
+
+section#main div.instructions {
+  margin-bottom: 8rem;
+}
+
+section#main div.instructions p {
+  max-width: 75ch;
+  margin: 0 auto;
+}
+
+section#main ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* end of main section */
+/* end of drink page */
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+
+/* scroll bar styles */
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--cardColor);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primaryColor);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primaryColor);
+}
+
+/* End of scroll bar styles */
+
+/* Media Queries */
+
+@media screen and (min-width: 600px) {
+  header#index h1 {
+    font-size: 3.5rem;
+  }
+}
+
+
+@media screen and (min-width: 900px) {
+  header#index h1 {
+    font-size: 4.5rem;
+  }
+}
