@@ -31,6 +31,9 @@ fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?"+newparams).then(
         // scrapping json to get the drink data 
         let drink = data.drinks[0]
          
+        // update page title
+        document.title = drink.strDrink 
+        
         // putting data in dom 
         title.innerText = drink.strDrink
         image.src = drink.strDrinkThumb

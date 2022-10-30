@@ -35,14 +35,14 @@ html {
 .slider {
   width: 60px;
   height: 30px;
-  background-color: lightgray;
+  background-color: var(--cardColor);
   border-radius: 20px;
   overflow: hidden;
   display: inline-block;
   align-items: center;
   border: 4px solid transparent;
   transition: .3s;
-  box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.25) inset;
+  /* box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.25) inset; */
   cursor: pointer;
 }
 
@@ -55,7 +55,7 @@ html {
   transform: translateX(-30px);
   border-radius: 20px;
   transition: .3s;
-  box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
+  /* box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25); */
 }
 
 
@@ -237,11 +237,28 @@ footer p {
   color: var(--cardColor);
 }
 
+footer p a {
+  color: #fff;
+}
+
+footer p a:hover {
+  color: var(--backgroundColor);
+}
+
+
+footer p a:active {
+  color: var(--cardColor);
+}
+
 /* Footer End */
 
 
 /* drink page  */
 /* main section */
+
+header nav a {
+  text-decoration: none;
+}
 
 section#main {
   text-align: center;
