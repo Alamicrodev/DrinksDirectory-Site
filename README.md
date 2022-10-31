@@ -21,20 +21,31 @@ Its good to keep the footer sticking to the bottom of the page. It will prevent 
 <img align="left" alt="CSS3" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" style="padding-right:10px;" />
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="26px"/>
 
-<!-- 
-### More Projects from API usage challenge: -->
 
-<!-- 
+
+### More Projects with API usage:
+
 <table bordercolor="#66b2b2">
   
   <tr>
-    <td width="33.3%"  style="align:center;" valign="top">
-<a target="_blank" href="https://github.com/CharlesCreativeContent/Demo-Day">Travelara.org</a>
+
+<td width="50%"  style="align:center;" valign="top">
+<a target="_blank" href="https://github.com/Alamicrodev/Nasa_PictureOfTheDay-Site">Nasa POTD</a>
         <br />
-      <a target="_blank" href="https://github.com/CharlesCreativeContent/Demo-Day">
-            <img src="https://github.com/CharlesCreativeContent/CharlesCreativeContent/raw/main/images/gif1.gif" width="100%"  alt="Travelara.org"/>
+      <a target="_blank" href="https://github.com/Alamicrodev/Nasa_PictureOfTheDay-Site">
+            <img src="https://github.com/Alamicrodev/Nasa_PictureOfTheDay-Site/raw/main/img/sitegif.gif" width="100%"  alt="Nasa Picture of the day"/>
         </a>
     </td>
 
+
+<td width="50%"  style="align:center;" valign="top">
+<a target="_blank" href="https://github.com/Alamicrodev/Random_DogPicture_Generator-Site">Random Dog Picture Generator</a>
+        <br />
+      <a target="_blank" href="https://github.com/Alamicrodev/Random_DogPicture_Generator-Site">
+            <img src="https://github.com/Alamicrodev/Random_DogPicture_Generator-Site/raw/main/img/sitegif.gif" width="100%"  alt="Random dog picture generator"/>
+        </a>
+    </td> 
+
+
   </tr>
-</table> -->
+</table> 
