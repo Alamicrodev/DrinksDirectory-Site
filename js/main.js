@@ -91,6 +91,7 @@ function getDrinks() {
           }
     }).catch((err) => {
         console.log("Sorry there was an error in trying to get the data", err)
+        resultsList.innerHTML = "<h3>Sorry, It seems like there is an error with the cocktail db API. Please Try Again later :(</h3>"
     })
 }
 
