@@ -3,9 +3,11 @@
 let searchBox = document.getElementById("searchBox") 
 let isAlcoholicCheck = document.getElementById("alcoholicCheckBox")
 let resultsList = document.getElementById("resultsList")
+let resultsHeading = document.querySelector("#mainContent h2")
 
 // an array of drinks
 let drinks = []
+let featuredLetters = ["a", "m", "s"]
 
 
 // A function that pushes the drinks into results list. 
@@ -47,52 +49,85 @@ function pushDrinks(drinks) {
    
 }
 
+// fetches drinks from a given API url and always returns an array
+async function fetchDrinks(url) {
+    let resp = await fetch(url)
+
+    if (!resp.ok) {
+        throw new Error("Request failed with status " + resp.status)
+    }
+
+    let data = await resp.json()
+    return data.drinks || []
+}
+
+// removes duplicate drinks by id
+function uniqueDrinks(drinks) {
+    let seen = new Set()
+
+    return drinks.filter((drink) => {
+        if (seen.has(drink.idDrink)) {
+            return false
+        }
+
+        seen.add(drink.idDrink)
+        return true
+    })
+}
+
+// applies the alcohol filter used by the checkbox
+function filterDrinks(drinks) {
+    if (isAlcoholicCheck.checked) {
+        return drinks.filter((drink) => drink.strAlcoholic !== "Alcoholic")
+    }
+
+    return drinks
+}
 
 // The function that makes the api call
-function getDrinks() {
-    let query = searchBox.value
-    let urlParams = new URLSearchParams({
-        "s": query
-    })
+async function getDrinks() {
+    let query = searchBox.value.trim()
 
-    // getting from the api
-    fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?"+urlParams).then((resp) => {
-        if (resp.ok) {
-            return resp.json()
+    try {
+        let fetchedDrinks = []
+
+        if (query === "") {
+            resultsHeading.innerText = "Featured Drinks:"
+
+            let featuredResults = await Promise.allSettled(
+                featuredLetters.map((letter) => {
+                    let urlParams = new URLSearchParams({ f: letter })
+                    return fetchDrinks("https://www.thecocktaildb.com/api/json/v1/1/search.php?" + urlParams)
+                })
+            )
+
+            fetchedDrinks = uniqueDrinks(
+                featuredResults
+                    .filter((result) => result.status === "fulfilled")
+                    .map((result) => result.value)
+                    .flat()
+            )
         }
         else {
-            console.log("There was some error in getting the data:", resp.status)
+            resultsHeading.innerText = "Results:"
+
+            let urlParams = new URLSearchParams({
+                s: query
+            })
+
+            fetchedDrinks = await fetchDrinks("https://www.thecocktaildb.com/api/json/v1/1/search.php?" + urlParams)
         }
-    }).then((data) => {
-         //gettings drinks array from data  
-          drinks = data.drinks 
-          let isAlcoholic = !isAlcoholicCheck.checked
 
-          //resetting the last results list   
-          resultsList.innerHTML = ""
+        drinks = filterDrinks(fetchedDrinks)
 
-          //checking for alchololic filter and filtering.
-          if (isAlcoholic == true) {
-            pushDrinks(drinks)
-          }
-          else 
-          {
-            drinks = drinks.filter((drink) => {
-                if (drink.strAlcoholic == "Alcoholic") {
-                    return false 
-                }
-                else {
-                    return true
-                }
-            } ) 
-
-           pushDrinks(drinks)
-            
-          }
-    }).catch((err) => {
+        // resetting the last results list
+        resultsList.innerHTML = ""
+        pushDrinks(drinks)
+    }
+    catch (err) {
         console.log("Sorry there was an error in trying to get the data", err)
         resultsList.innerHTML = "<h3>Sorry, It seems like there is an error with the cocktail db API. Please Try Again later :(</h3>"
-    })
+    }
 }
 
 
